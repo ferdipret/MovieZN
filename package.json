@@ -3,5 +3,16 @@
   "version": "1.0.0",
   "description": "A frontend UI for The Movie Database",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  },
+  "scripts": {
+    "start": "node ./node_modules/nodemon/bin/nodemon.js server.js"
+  }
 }
