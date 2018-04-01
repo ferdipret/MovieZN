@@ -19,6 +19,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "html-webpack-plugin": "^3.1.0",
     "nodemon": "^1.17.2",
     "webpack": "^4.4.1",
@@ -42,7 +44,9 @@
       "node_modules"
     ],
     "moduleNameMapper": {
-      "containeras/(.*)": "<rootDir>/src/containers"
-    }
+      "containers/(.*)": "<rootDir>/src/containers/$1",
+      "components/(.*)": "<rootDir>/src/components/$1"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/__test__/enzymeConfig.js"
   }
 }
