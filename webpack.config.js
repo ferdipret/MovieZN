@@ -16,8 +16,21 @@ module.exports = {
     })
   ],
 
-  devServer: {
-    contentBase: "./dist"
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+    ],
+  },
+
+  resolve: {
+    alias: {
+      containers: path.resolve(__dirname, 'src/containers'),
+      components: path.resolve(__dirname, 'src/components'),
+    },
   },
 
   output: {
