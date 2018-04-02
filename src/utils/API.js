@@ -15,5 +15,6 @@ export default function(args) {
         return `${REQUEST_URL}/discover/movie?api_key=${API_KEY}`
     }
   })()
+
   return axios.get(URL)
 }
