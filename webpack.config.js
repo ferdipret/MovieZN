@@ -28,8 +28,10 @@ module.exports = {
 
   resolve: {
     alias: {
-      containers: path.resolve(__dirname, 'src/containers'),
-      components: path.resolve(__dirname, 'src/components'),
+      components: path.resolve(__dirname, 'src/components/'),
+      containers: path.resolve(__dirname, 'src/containers/'),
+      utils: path.resolve(__dirname, 'src/utils/'),
+      constants: path.resolve(__dirname, 'src/constants/'),
     },
   },
 

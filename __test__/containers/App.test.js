@@ -4,6 +4,8 @@ import { mount, find, simulate } from 'enzyme'
 
 import App from 'containers/App'
 
+// We should make sure the app doesn't have any problems
+// on the initial render
 describe('App', () => {
   test('should render correctly', () => {
     const rendered = renderer.create(<App />)
