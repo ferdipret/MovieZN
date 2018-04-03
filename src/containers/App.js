@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
+import reset from 'styles/reset'
 import request from 'utils/API'
 import Input from 'components/Input'
+import Grid from 'components/Grid'
 
 class App extends Component {
   constructor(props) {
@@ -24,14 +27,29 @@ class App extends Component {
     const { searchInputValue } = this.state
 
     return (
-      <div>
-        <div>MovieZN</div>
-        <Input
-          onSearchInputChange={this.handleSearchInputChange}
-          value={searchInputValue}
-        />
-      </div>
+      <Grid container spacing={16}>
+        <Grid item xs={{ span: 6, offset: 0 }}>
+          MovieZN
+        </Grid>
+        <Grid item xs={{ span: 12, offset: 0 }}>
+          <Input
+            onSearchSubmit={this.handleSearchSubmit}
+            onSearchInputChange={this.handleSearchInputChange}
+            value={searchInputValue}
+          />
+        </Grid>
+      </Grid>
     )
+  }
+
+  handleSearchSubmit = e => {
+    e.preventDefault(e)
+    this.setState({ containerState: 'search' }, () => {
+      const { containerState, searchInputValue } = this.state
+      request({ type: containerState, searchValue: searchInputValue }).then(
+        res => console.log(res),
+      )
+    })
   }
 
   handleSearchInputChange = e =>
