@@ -11,8 +11,6 @@
     "styled-components": "^3.2.5"
   },
   "devDependencies": {
-<<<<<<< HEAD
-=======
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^22.4.3",
@@ -20,7 +18,6 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
->>>>>>> 0c272f5... Added simple input field to handle searches
     "clean-webpack-plugin": "^0.1.19",
     "html-webpack-plugin": "^3.1.0",
     "nodemon": "^1.17.2",
@@ -30,9 +27,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
-<<<<<<< HEAD
-    "build": "webpack"
-=======
     "build": "webpack",
     "test": "jest --watch"
   },
@@ -48,8 +42,9 @@
       "node_modules"
     ],
     "moduleNameMapper": {
-      "containeras/(.*)": "<rootDir>/src/containers"
-    }
->>>>>>> 0c272f5... Added simple input field to handle searches
+      "containers/(.*)": "<rootDir>/src/containers/$1",
+      "components/(.*)": "<rootDir>/src/components/$1"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/__test__/enzymeConfig.js"
   }
 }
