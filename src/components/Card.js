@@ -9,4 +9,8 @@ const Card = ({ className, children }) => (
   </Grid>
 )
 
-export default styled(Card)``
+export default styled(Card)`
+  display: flex;
+  justify-content: center;
+  width: 80%;
+`
