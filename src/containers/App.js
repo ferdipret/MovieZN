@@ -33,12 +33,23 @@ class App extends Component {
         </Grid>
         <Grid item xs={{ span: 12, offset: 0 }}>
           <Input
+            onSearchSubmit={this.handleSearchSubmit}
             onSearchInputChange={this.handleSearchInputChange}
             value={searchInputValue}
           />
         </Grid>
       </Grid>
     )
+  }
+
+  handleSearchSubmit = e => {
+    e.preventDefault(e)
+    this.setState({ containerState: 'search' }, () => {
+      const { containerState, searchInputValue } = this.state
+      request({ type: containerState, searchValue: searchInputValue }).then(
+        res => console.log(res),
+      )
+    })
   }
 
   handleSearchInputChange = e =>
