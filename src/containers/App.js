@@ -6,7 +6,15 @@ class App extends Component {
     super(props)
 
     this.state = {
+      // This will hold our search value
       searchInputValue: '',
+      /**
+       * Our centent container will have 3 states:
+       * 'discover': This will be the default, with some filter options
+       * 'search':   When the user makes a search, we will show relavant results
+       * 'select':   If an item has been selected, we want to display more info for that item
+       */
+      containerState: 'discover',
     }
   }
 
@@ -15,7 +23,7 @@ class App extends Component {
 
     return (
       <div>
-        <div>Hello, MovieZN</div>
+        <div>MovieZN</div>
         <Input
           onSearchInputChange={this.handleSearchInputChange}
           value={searchInputValue}
