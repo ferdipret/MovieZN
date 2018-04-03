@@ -4,8 +4,8 @@ const express = require("express");
 const app = express();
 
 // When we run the app on a server, we might want to set the port number through
-// an environment variable otherwise it will be `3000`
-const PORT = process.env.PORT || 3000;
+// an environment variable otherwise it will be `1337`
+const PORT = process.env.PORT || 1337;
 
 // Here we're just making sure that if a user tries to access the app through
 // a secure protocol, we're redirecting to http://
@@ -19,5 +19,5 @@ app.use(
 // Setup our public directory
 app.use(express.static("public"));
 
-// Start the app and listen on port process.env.PORT || 3000
+// Start the app and listen on port process.env.PORT || 1337
 app.listen(PORT, () => console.log(`App running on port ${PORT}`));
