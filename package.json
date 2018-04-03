@@ -1,0 +1,7 @@
+{
+  "name": "moviezn",
+  "version": "1.0.0",
+  "description": "A frontend UI for The Movie Database",
+  "main": "index.js",
+  "license": "MIT"
+}
