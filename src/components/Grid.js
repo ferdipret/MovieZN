@@ -3,8 +3,13 @@ import styled, { css } from 'styled-components'
 
 import media from 'utils/media'
 
-const getWidth = val => 100 / (12 / val)
-const getOffset = val => 100 / (12 / val)
+// We can get the % value for offsets and spans by doing the following calc
+// and this works even for 0 values since 100 / (12 / 0) === 0
+const calc = val => 100 / (12 / val)
+
+// We'll make functions for each to keep the name consistent
+const getWidth = val => calc(val)
+const getOffset = val => calc(val)
 
 /* prettier-ignore */
 export default styled.div`
