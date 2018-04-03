@@ -12,7 +12,7 @@ describe('App', () => {
 })
 
 describe('App/Input', () => {
-  test('should update state when value change', () => {
+  test('should update state when onChange is called', () => {
     const wrapper = mount(<App />)
     const input = wrapper.find('.search-input')
 
