@@ -5,6 +5,7 @@ import reset from 'styles/reset'
 import { request, getURL } from 'utils/API'
 import Input from 'components/Input'
 import Grid from 'components/Grid'
+import Card from 'components/Card'
 
 const initialState = {
   // This will hold our search value
@@ -29,6 +30,20 @@ class App extends Component {
     this.state = initialState
   }
 
+  componentWillMount() {
+    // When the app mounts, we'll make a request to get some featured movies
+    // From the movie db, and set that to our component state
+    request(
+      getURL({
+        searchValue: this.state.searchInputValue,
+        type: this.state.containerState,
+      }),
+    ).then(res => {
+      this.setState({ movies: res.data.results })
+      console.log(res.data.results)
+    })
+  }
+
   render() {
     const { searchInputValue } = this.state
 
@@ -37,6 +52,7 @@ class App extends Component {
         <Grid item xs={{ span: 6, offset: 0 }}>
           MovieZN
         </Grid>
+
         <Grid item xs={{ span: 12, offset: 0 }}>
           <Input
             onSearchSubmit={this.handleSearchSubmit}
@@ -44,11 +60,23 @@ class App extends Component {
             value={searchInputValue}
           />
         </Grid>
+
+        {/* Here we'll render the movie posters in our card compontent */}
+        {this.state.movies
+          ? this.state.movies.map(movie => (
+              <Grid item xs={{ span: 12, offset: 0 }} key={movie.id}>
+                <Card movie={movie} />
+              </Grid>
+            ))
+          : null}
       </Grid>
     )
   }
 
   handleSearchSubmit = e => {
+    // When we submit our search, we want to set our containerState to 'search'
+    // This way we can indicate to the user that a search is in progress, and
+    // render the results once it has resolved
     e.preventDefault(e)
     this.setState({ containerState: 'search' }, () => {
       const { containerState, searchInputValue } = this.state
@@ -58,6 +86,8 @@ class App extends Component {
     })
   }
 
+  // When we make a search we'll get the value from our component state
+  // So our handler should just set this state to searchInputValue
   handleSearchInputChange = e =>
     this.setState({ searchInputValue: e.target.value })
 }

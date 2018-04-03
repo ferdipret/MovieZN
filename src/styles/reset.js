@@ -4,6 +4,10 @@ import styled, { injectGlobal } from 'styled-components'
 // For our css reset we'll use the 'injectGlobal' method from styled components
 export default styled.div`
   ${injectGlobal`
+    * {
+      font-size: 10px;
+    }
+
     html,
     body,
     p,
