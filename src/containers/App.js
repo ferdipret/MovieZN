@@ -86,10 +86,11 @@ class App extends Component {
     })
   }
 
-  // When we make a search we'll get the value from our component state
-  // So our handler should just set this state to searchInputValue
-  handleSearchInputChange = e =>
-    this.setState({ searchInputValue: e.target.value })
+  handleSearchInputChange = e => {
+    // When we make a search we'll get the value from our component state
+    // So our handler should just set this state to searchInputValue
+    return this.setState({ searchInputValue: e.target.value })
+  }
 }
 
 export default App

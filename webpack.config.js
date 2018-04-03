@@ -12,32 +12,34 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
-      title: "Development"
+      title: "Development",
+      template: "./src/index.html",
+      filedname: "./index.html"
     })
   ],
-
 
   devServer: {
     contentBase: "./dist"
   },
+
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
-      },
-    ],
+        use: "babel-loader"
+      }
+    ]
   },
 
   resolve: {
     alias: {
-      components: path.resolve(__dirname, 'src/components/'),
-      containers: path.resolve(__dirname, 'src/containers/'),
-      utils: path.resolve(__dirname, 'src/utils/'),
-      constants: path.resolve(__dirname, 'src/constants/'),
-      styles: path.resolve(__dirname, 'src/styles/'),
-    },
+      components: path.resolve(__dirname, "src/components/"),
+      containers: path.resolve(__dirname, "src/containers/"),
+      utils: path.resolve(__dirname, "src/utils/"),
+      constants: path.resolve(__dirname, "src/constants/"),
+      styles: path.resolve(__dirname, "src/styles/")
+    }
   },
 
   output: {
