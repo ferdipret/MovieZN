@@ -48,7 +48,8 @@
       "^components(.*)": "<rootDir>/src/components/$1",
       "^containers(.*)": "<rootDir>/src/containers/$1",
       "^utils(.*)": "<rootDir>/src/utils/$1",
-      "^constants(.*)": "<rootDir>/src/constants/$1"
+      "^constants(.*)": "<rootDir>/src/constants/$1",
+      "^__mock__(.*)": "<rootDir>/__mock__/$1"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/__test__/enzymeConfig.js"
   }
