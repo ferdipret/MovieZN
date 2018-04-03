@@ -29,6 +29,15 @@ class App extends Component {
     this.state = initialState
   }
 
+  componentWillMount() {
+    request(
+      getURL({
+        searchValue: this.state.searchInputValue,
+        type: this.state.containerState,
+      }),
+    ).then(res => console.log(res))
+  }
+
   render() {
     const { searchInputValue } = this.state
 
