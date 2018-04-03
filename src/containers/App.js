@@ -3,8 +3,10 @@ import styled from 'styled-components'
 
 import reset from 'styles/reset'
 import { request, getURL } from 'utils/API'
+import API_CONSTANTS from 'constants/API_CONSTANTS'
 import Input from 'components/Input'
 import Grid from 'components/Grid'
+import Card from 'components/Card'
 
 const initialState = {
   // This will hold our search value
@@ -51,6 +53,7 @@ class App extends Component {
         <Grid item xs={{ span: 6, offset: 0 }}>
           MovieZN
         </Grid>
+
         <Grid item xs={{ span: 12, offset: 0 }}>
           <Input
             onSearchSubmit={this.handleSearchSubmit}
@@ -58,6 +61,21 @@ class App extends Component {
             value={searchInputValue}
           />
         </Grid>
+
+        {/* Here we'll render the movie posters in our card compontent */}
+        {this.state.movies
+          ? this.state.movies.map(movie => (
+              <Grid item xs={{ span: 12, offset: 0 }}>
+                <Card>
+                  <img
+                    src={`${API_CONSTANTS.POSTER_BASE_URL}w185/${
+                      movie.poster_path
+                    }`}
+                  />
+                </Card>
+              </Grid>
+            ))
+          : null}
       </Grid>
     )
   }
