@@ -28,7 +28,9 @@ class App extends Component {
 
     return (
       <Grid container spacing={16}>
-        <div>MovieZN</div>
+        <Grid item xs={{ span: 6, offset: 1 }}>
+          MovieZN
+        </Grid>
         <Input
           onSearchInputChange={this.handleSearchInputChange}
           value={searchInputValue}
