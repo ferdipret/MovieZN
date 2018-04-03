@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should render correctly 1`] = `
+<form
+  className="sc-bdVaJa cLDRn"
+  onSubmit={undefined}
+>
+  <input
+    className="search-input"
+    onChange={undefined}
+    value={undefined}
+  />
+  <button
+    className="form-submit-btn hidden"
+    type="submit"
+  />
+</form>
+`;

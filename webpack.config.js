@@ -16,10 +16,10 @@ module.exports = {
     })
   ],
 
-<<<<<<< HEAD
+
   devServer: {
     contentBase: "./dist"
-=======
+  },
   module: {
     rules: [
       {
@@ -38,7 +38,6 @@ module.exports = {
       constants: path.resolve(__dirname, 'src/constants/'),
       styles: path.resolve(__dirname, 'src/styles/'),
     },
->>>>>>> 0c272f5... Added simple input field to handle searches
   },
 
   output: {
