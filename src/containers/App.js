@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 
+import reset from 'styles/reset'
 import request from 'utils/API'
 import Input from 'components/Input'
+import Grid from 'components/Grid'
 
 class App extends Component {
   constructor(props) {
@@ -24,13 +27,13 @@ class App extends Component {
     const { searchInputValue } = this.state
 
     return (
-      <div>
+      <Grid container spacing={16}>
         <div>MovieZN</div>
         <Input
           onSearchInputChange={this.handleSearchInputChange}
           value={searchInputValue}
         />
-      </div>
+      </Grid>
     )
   }
 

@@ -20,6 +20,8 @@ describe('App/Input', () => {
 
     input.simulate('change', { target: { value: 'New Value' } })
 
+    console.log(wrapper.state())
+
     expect(wrapper.state().searchInputValue).toBe('New Value')
   })
 })
