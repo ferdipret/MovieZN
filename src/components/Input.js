@@ -1,15 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Input = ({ className, onSearchInputChange, value }) => (
-  <form>
+const Input = ({ className, onSearchInputChange, onSearchSubmit, value }) => (
+  <form className={className} onSubmit={onSearchSubmit}>
     <input
-      className={`${className} search-input`}
+      className="search-input"
       onChange={onSearchInputChange}
       value={value}
     />
-    <button type="submit" className="form-submit-btn" />
+    <button type="submit" className="form-submit-btn hidden" />
   </form>
 )
 
-export default styled(Input)``
+export default styled(Input)`
+  .hidden {
+    display: none;
+  }
+`
