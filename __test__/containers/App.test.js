@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 import { mount, find, simulate } from 'enzyme'
 
 import App from 'containers/App'
+import request from 'utils/API'
 
 // We should make sure the app doesn't have any problems
 // on the initial render
@@ -19,8 +20,6 @@ describe('App/Input', () => {
     const input = wrapper.find('.search-input')
 
     input.simulate('change', { target: { value: 'New Value' } })
-
-    console.log(wrapper.state())
 
     expect(wrapper.state().searchInputValue).toBe('New Value')
   })
