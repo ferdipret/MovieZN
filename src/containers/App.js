@@ -2,25 +2,31 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import reset from 'styles/reset'
-import request from 'utils/API'
+import { request, getURL } from 'utils/API'
 import Input from 'components/Input'
 import Grid from 'components/Grid'
+
+const initialState = {
+  // This will hold our search value
+  searchInputValue: '',
+  /**
+   * Our centent container will have 3 states:
+   * 'discover': This will be the default, with some filter options
+   * 'search':   When the user makes a search, we will show relavant results
+   * 'select':   If an item has been selected, we want to display more info for that item
+   */
+  containerState: 'discover',
+  /**
+   * Movies will be kept as an array
+   */
+  movies: undefined,
+}
 
 class App extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      // This will hold our search value
-      searchInputValue: '',
-      /**
-       * Our centent container will have 3 states:
-       * 'discover': This will be the default, with some filter options
-       * 'search':   When the user makes a search, we will show relavant results
-       * 'select':   If an item has been selected, we want to display more info for that item
-       */
-      containerState: 'discover',
-    }
+    this.state = initialState
   }
 
   render() {
@@ -46,9 +52,9 @@ class App extends Component {
     e.preventDefault(e)
     this.setState({ containerState: 'search' }, () => {
       const { containerState, searchInputValue } = this.state
-      request({ type: containerState, searchValue: searchInputValue }).then(
-        res => console.log(res),
-      )
+      request(
+        getURL({ type: containerState, searchValue: searchInputValue }),
+      ).then(res => console.log(res.data.results))
     })
   }
 
