@@ -11,8 +11,14 @@ const calc = val => 100 / (12 / val)
 const getWidth = val => calc(val)
 const getOffset = val => calc(val)
 
+const Grid = ({ className, children, key }) => (
+  <div key={key} className={className}>
+    {children}
+  </div>
+)
+
 /* prettier-ignore */
-export default styled.div`
+export default styled(Grid)`
   /**
    * For our grid we'll use containers and items
    * The container should not have any influence on our items' styles
