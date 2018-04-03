@@ -30,12 +30,17 @@ class App extends Component {
   }
 
   componentWillMount() {
+    // When the app mounts, we'll make a request to get some featured movies
+    // From the movie db, and set that to our component state
     request(
       getURL({
         searchValue: this.state.searchInputValue,
         type: this.state.containerState,
       }),
-    ).then(res => console.log(res))
+    ).then(res => {
+      this.setState({ movies: res.data.results })
+      console.log(res.data.results)
+    })
   }
 
   render() {
@@ -58,6 +63,9 @@ class App extends Component {
   }
 
   handleSearchSubmit = e => {
+    // When we submit our search, we want to set our containerState to 'search'
+    // This way we can indicate to the user that a search is in progress, and
+    // render the results once it has resolved
     e.preventDefault(e)
     this.setState({ containerState: 'search' }, () => {
       const { containerState, searchInputValue } = this.state
@@ -67,6 +75,8 @@ class App extends Component {
     })
   }
 
+  // When we make a search we'll get the value from our component state
+  // So our handler should just set this state to searchInputValue
   handleSearchInputChange = e =>
     this.setState({ searchInputValue: e.target.value })
 }
