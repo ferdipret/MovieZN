@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+
+import request from 'utils/API'
 import Input from 'components/Input'
 
 class App extends Component {
