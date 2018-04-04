@@ -21,6 +21,11 @@ const initialState = {
    * Movies will be kept as an array
    */
   movies: undefined,
+
+  /**
+   * We'll add some error boundaries so the app won't crash when we have errors
+   */
+  error: undefined,
 }
 
 class App extends Component {
@@ -32,19 +37,24 @@ class App extends Component {
 
   componentWillMount() {
     // When the app mounts, we'll make a request to get some featured movies
-    // From the movie db, and set that to our component state
-    request(
-      getURL({
-        searchValue: this.state.searchInputValue,
-        type: this.state.containerState,
-      }),
-    ).then(res => this.setState({ movies: res.data.results }))
+    // from the movie db, and set that to our component state
+    const query = getURL({
+      searchValue: this.state.searchInputValue,
+      type: this.state.containerState,
+    })
+    this.getData(query)
+  }
+
+  componentDidCatch(error, info) {
+    this.setState({ error }, () => console.warn(info))
   }
 
   render() {
-    const { searchInputValue } = this.state
+    const { searchInputValue, error } = this.state
 
-    return (
+    return error ? (
+      <h1>Oops! Something went wrong...</h1>
+    ) : (
       <Grid
         container
         spacing={16}
@@ -86,6 +96,7 @@ class App extends Component {
      * @param {object} query - This will be the query passed to our API function
      */
     request(query).then(res => {
+      console.log(res)
       this.setData({ movies: res.data.results })
     })
   }
