@@ -38,10 +38,7 @@ class App extends Component {
         searchValue: this.state.searchInputValue,
         type: this.state.containerState,
       }),
-    ).then(res => {
-      this.setState({ movies: res.data.results })
-      console.log(res.data.results)
-    })
+    ).then(res => this.setState({ movies: res.data.results }))
   }
 
   render() {
@@ -64,7 +61,11 @@ class App extends Component {
         {/* Here we'll render the movie posters in our card compontent */}
         {this.state.movies
           ? this.state.movies.map(movie => (
-              <Grid item xs={{ span: 12, offset: 0 }} key={movie.id}>
+              <Grid
+                item
+                xs={{ span: 12, offset: 0 }}
+                md={{ span: 6, offset: 0 }}
+                key={movie.id}>
                 <Card movie={movie} />
               </Grid>
             ))
@@ -82,7 +83,7 @@ class App extends Component {
       const { containerState, searchInputValue } = this.state
       request(
         getURL({ type: containerState, searchValue: searchInputValue }),
-      ).then(res => console.log(res.data.results))
+      ).then(res => this.setState({ movies: res.data.results }))
     })
   }
 
