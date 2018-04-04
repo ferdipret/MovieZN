@@ -79,6 +79,27 @@ class App extends Component {
     )
   }
 
+  getData = query => {
+    /**
+     * getData will handle getting data from the API, this is to avoid
+     * repeating ourselfs in the handlers
+     * @param {object} query - This will be the query passed to our API function
+     */
+    request(query).then(res => {
+      this.setData({ movies: res.data.results })
+    })
+  }
+
+  setData = data => {
+    /**
+     * setData will set data in our container state, this is so we
+     * can avoid creating multiple conditions before setting data
+     * after the response has returned
+     * @param {object} data - Data object this will be set in state
+     */
+    this.setState(data)
+  }
+
   handleSearchSubmit = e => {
     // When we submit our search, we want to set our containerState to 'search'
     // This way we can indicate to the user that a search is in progress, and
@@ -86,16 +107,20 @@ class App extends Component {
     e.preventDefault(e)
     this.setState({ containerState: 'search' }, () => {
       const { containerState, searchInputValue } = this.state
-      request(
-        getURL({ type: containerState, searchValue: searchInputValue }),
-      ).then(res => this.setState({ movies: res.data.results }))
+      const query = getURL({
+        type: containerState,
+        searchValue: searchInputValue,
+      })
+      console.log(query)
+      this.getData(query)
     })
   }
 
   handleSearchInputChange = e => {
     // When we make a search we'll get the value from our component state
     // So our handler should just set this state to searchInputValue
-    return this.setState({ searchInputValue: e.target.value })
+    const searchInputValue = e.target.value
+    this.setState({ searchInputValue })
   }
 }
 
