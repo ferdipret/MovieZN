@@ -17,7 +17,8 @@ export default styled(Card)`
   height: 40rem;
   justify-content: center;
   margin: 0 auto 2.5rem;
-  width: 80%;
+  overflow: hidden;
+  width: 95%;
 
   img {
     object-fit: cover;

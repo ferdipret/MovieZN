@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 
 import reset from 'styles/reset'
 import { request, getURL } from 'utils/API'
 import Input from 'components/Input'
 import Grid from 'components/Grid'
 import Card from 'components/Card'
+import color from 'styles/colors'
 
 const initialState = {
   // This will hold our search value
@@ -64,7 +64,9 @@ class App extends Component {
               <Grid
                 item
                 xs={{ span: 12, offset: 0 }}
-                md={{ span: 6, offset: 0 }}
+                sm={{ span: 6, offset: 0 }}
+                md={{ span: 4, offset: 0 }}
+                md={{ span: 3, offset: 0 }}
                 key={movie.id}>
                 <Card movie={movie} />
               </Grid>
