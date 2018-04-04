@@ -5,7 +5,7 @@
  * we can increase/decrease the lightness. Very usefull for hover/active
  * element states.
  *
- * These color variables can also be passed to a component/elements {style}
+ * These colour variables can also be passed to a component/elements {style}
  * props
  *
  * @param {number} l - Lightness in the hsl() color, from 1 - 100
