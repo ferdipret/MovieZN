@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 
 import reset from 'styles/reset'
 import { request, getURL } from 'utils/API'
 import Input from 'components/Input'
 import Grid from 'components/Grid'
 import Card from 'components/Card'
+import color from 'styles/colors'
 
 const initialState = {
   // This will hold our search value
@@ -21,6 +21,20 @@ const initialState = {
    * Movies will be kept as an array
    */
   movies: undefined,
+
+  /**
+   * We'll add some error boundaries so the app won't crash when we have errors
+   */
+  error: undefined,
+
+  /**
+   * We'll store some pagination results in the state so we don't make extra calls
+   */
+  pagination: {
+    page: 1,
+    total_results: 0,
+    total_pages: 0,
+  },
 }
 
 class App extends Component {
@@ -32,23 +46,28 @@ class App extends Component {
 
   componentWillMount() {
     // When the app mounts, we'll make a request to get some featured movies
-    // From the movie db, and set that to our component state
-    request(
-      getURL({
-        searchValue: this.state.searchInputValue,
-        type: this.state.containerState,
-      }),
-    ).then(res => {
-      this.setState({ movies: res.data.results })
-      console.log(res.data.results)
+    // from the movie db, and set that to our component state
+    const query = getURL({
+      searchValue: this.state.searchInputValue,
+      type: this.state.containerState,
     })
+    this.getData(query)
+  }
+
+  componentDidCatch(error, info) {
+    this.setState({ error }, () => console.warn(info))
   }
 
   render() {
-    const { searchInputValue } = this.state
+    const { searchInputValue, error } = this.state
 
-    return (
-      <Grid container spacing={16}>
+    return error ? (
+      <h1>Oops! Something went wrong...</h1>
+    ) : (
+      <Grid
+        container
+        spacing={16}
+        style={{ backgroundColor: color.background() }}>
         <Grid item xs={{ span: 6, offset: 0 }}>
           MovieZN
         </Grid>
@@ -64,13 +83,41 @@ class App extends Component {
         {/* Here we'll render the movie posters in our card compontent */}
         {this.state.movies
           ? this.state.movies.map(movie => (
-              <Grid item xs={{ span: 12, offset: 0 }} key={movie.id}>
+              <Grid
+                item
+                xs={{ span: 12, offset: 0 }}
+                sm={{ span: 6, offset: 0 }}
+                md={{ span: 4, offset: 0 }}
+                md={{ span: 3, offset: 0 }}
+                key={movie.id}>
                 <Card movie={movie} />
               </Grid>
             ))
           : null}
       </Grid>
     )
+  }
+
+  getData = query => {
+    /**
+     * getData will handle getting data from the API, this is to avoid
+     * repeating ourselfs in the handlers
+     * @param {object} query - This will be the query passed to our API function
+     */
+    request(query).then(res => {
+      console.log(res)
+      this.setData({ movies: res.data.results })
+    })
+  }
+
+  setData = data => {
+    /**
+     * setData will set data in our container state, this is so we
+     * can avoid creating multiple conditions before setting data
+     * after the response has returned
+     * @param {object} data - Data object this will be set in state
+     */
+    this.setState(data)
   }
 
   handleSearchSubmit = e => {
@@ -80,16 +127,20 @@ class App extends Component {
     e.preventDefault(e)
     this.setState({ containerState: 'search' }, () => {
       const { containerState, searchInputValue } = this.state
-      request(
-        getURL({ type: containerState, searchValue: searchInputValue }),
-      ).then(res => console.log(res.data.results))
+      const query = getURL({
+        type: containerState,
+        searchValue: searchInputValue,
+      })
+      console.log(query)
+      this.getData(query)
     })
   }
 
   handleSearchInputChange = e => {
     // When we make a search we'll get the value from our component state
     // So our handler should just set this state to searchInputValue
-    return this.setState({ searchInputValue: e.target.value })
+    const searchInputValue = e.target.value
+    this.setState({ searchInputValue })
   }
 }
 
