@@ -3,5 +3,6 @@
 exports[`Grid should render correctly 1`] = `
 <div
   className="sc-bdVaJa gGsjnR"
+  style={undefined}
 />
 `;

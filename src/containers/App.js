@@ -45,7 +45,10 @@ class App extends Component {
     const { searchInputValue } = this.state
 
     return (
-      <Grid container spacing={16}>
+      <Grid
+        container
+        spacing={16}
+        style={{ backgroundColor: color.background() }}>
         <Grid item xs={{ span: 6, offset: 0 }}>
           MovieZN
         </Grid>

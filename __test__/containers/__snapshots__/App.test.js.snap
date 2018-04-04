@@ -3,14 +3,21 @@
 exports[`App should render correctly 1`] = `
 <div
   className="sc-htpNat bItXhR"
+  style={
+    Object {
+      "backgroundColor": "hsl(0, 0%, 13%)",
+    }
+  }
 >
   <div
     className="sc-htpNat jIYwWs"
+    style={undefined}
   >
     MovieZN
   </div>
   <div
     className="sc-htpNat iYrbMG"
+    style={undefined}
   >
     <form
       className="sc-bwzfXH jFkwyO"
