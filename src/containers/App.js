@@ -26,6 +26,15 @@ const initialState = {
    * We'll add some error boundaries so the app won't crash when we have errors
    */
   error: undefined,
+
+  /**
+   * We'll store some pagination results in the state so we don't make extra calls
+   */
+  pagination: {
+    page: 1,
+    total_results: 0,
+    total_pages: 0,
+  },
 }
 
 class App extends Component {
